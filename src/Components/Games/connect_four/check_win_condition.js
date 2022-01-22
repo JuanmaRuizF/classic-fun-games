@@ -36,11 +36,15 @@ const check_horizontal_values = (
           count += 1;
           if (count >= 4) {
             win_condition = true;
+            return 0;
           }
         } else if (count >= 1) {
           count = 0;
+          return 0;
         }
+        return 0;
       }
+      return 0;
     });
   }
   return win_condition;
@@ -69,11 +73,15 @@ const check_vertical_values = (
           count += 1;
           if (count >= 4) {
             win_condition = true;
+            return 0;
           }
         } else if (count >= 1) {
           count = 0;
+          return 0;
         }
+        return 0;
       }
+      return 0;
     });
   }
   return win_condition;
@@ -130,11 +138,15 @@ const check_diagonal_values = (
           count += 1;
           if (count >= 4) {
             win_condition = true;
+            return 0;
           }
         } else if (count > 1) {
           count = 1;
+          return 0;
         }
+        return 0;
       }
+      return 0;
     });
   }
   return win_condition;
