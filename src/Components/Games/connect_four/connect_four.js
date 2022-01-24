@@ -7,9 +7,11 @@ import { Modal, Button } from "react-bootstrap";
 import Navbar from "../../Navbar_components/Navbar";
 import Sidebar from "../../Navbar_components/Sidebar";
 import Submenu from "../../Navbar_components/Submenu";
+import { useGlobalContext } from "../../../context";
 
 const Connect_four = () => {
   let elements = useRef(create_grid_elements()); // para que no se ejecute siempre esto al renderizar de nuevo la pantalla
+  const { closeSubmenu } = useGlobalContext();
 
   const handleClick = (key) => {
     if (users_turn === "green") {
@@ -91,85 +93,88 @@ const Connect_four = () => {
 
   return (
     <>
-      <Navbar />
-      <Sidebar />
-      <Submenu />
+      <div className="connect_four">
+        <Navbar />
+        <Sidebar />
+        <Submenu />
+        <div className="container" onMouseOver={closeSubmenu}>
+          <div className="title">Connect 4</div>
+          {gameWon ? (
+            <Modal show={gameWon} onHide={handleClose}>
+              <Modal.Header closeButton>
+                <Modal.Title>Game Finished</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                {winner.charAt(0).toUpperCase() + winner.slice(1)} won the game
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="primary" onClick={handleClose}>
+                  New Game
+                </Button>
+              </Modal.Footer>
+            </Modal>
+          ) : (
+            <div></div>
+          )}
 
-      <div className="container">
-        <div className="title">Connect 4</div>
-        {gameWon ? (
-          <Modal show={gameWon} onHide={handleClose}>
-            <Modal.Header closeButton>
-              <Modal.Title>Game Finished</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              {winner.charAt(0).toUpperCase() + winner.slice(1)} won the game
-            </Modal.Body>
-            <Modal.Footer>
-              <Button variant="primary" onClick={handleClose}>
-                New Game
-              </Button>
-            </Modal.Footer>
-          </Modal>
-        ) : (
-          <div></div>
-        )}
-
-        {is_green ? (
-          <div className="center_div">
-            <div className={users_turn}>
-              {users_turn.charAt(0).toUpperCase() + users_turn.slice(1)}'s Turn
-            </div>
-          </div>
-        ) : (
-          <div className="center_div">
-            <div className={users_turn}>
-              {users_turn.charAt(0).toUpperCase() + users_turn.slice(1)}'s Turn
-            </div>
-          </div>
-        )}
-        <div className="grid-container">
-          {grid.current.map((element) => {
-            return (
-              <div
-                className={element["class_name"]}
-                key={element["id"]}
-                onClick={() => {
-                  handleClick(element["id"]);
-                }}
-              >
-                {/* {element["id"]} */}
+          {is_green ? (
+            <div className="center_div">
+              <div className={users_turn}>
+                {users_turn.charAt(0).toUpperCase() + users_turn.slice(1)}'s
+                Turn
               </div>
-            );
-          })}
-        </div>
-        <div className="center_div">
-          <Button
-            variant="primary"
-            onClick={handleClose}
-            className="restart_button"
-          >
-            Restart
-          </Button>
-        </div>
-        <div>
-          <h3>Game Rules</h3>
-          <ul>
-            <li>
-              There are 2 players: green and red. The green player starts and
-              places the first piece. The piece will automatically go to the
-              first avaiable position of the selected row. After the green
-              player has placed it's piece, it will be the red player's turn.
-            </li>
-            <li>
-              The game finishes when one of the two players manages to connect 4
-              pieces in a row horizontally, vertically or diagonally.
-            </li>
-            <li>
-              To restart the game at any point, click the "restart" button
-            </li>
-            <li>Have fun!</li>
-          </ul>
+            </div>
+          ) : (
+            <div className="center_div">
+              <div className={users_turn}>
+                {users_turn.charAt(0).toUpperCase() + users_turn.slice(1)}'s
+                Turn
+              </div>
+            </div>
+          )}
+          <div className="grid-container">
+            {grid.current.map((element) => {
+              return (
+                <div
+                  className={element["class_name"]}
+                  key={element["id"]}
+                  onClick={() => {
+                    handleClick(element["id"]);
+                  }}
+                >
+                  {/* {element["id"]} */}
+                </div>
+              );
+            })}
+          </div>
+          <div className="center_div">
+            <Button
+              variant="primary"
+              onClick={handleClose}
+              className="restart_button"
+            >
+              Restart
+            </Button>
+          </div>
+          <div className="text_info">
+            <h3>Game Rules</h3>
+            <ul>
+              <li>
+                There are 2 players: green and red. The green player starts and
+                places the first piece. The piece will automatically go to the
+                first avaiable position of the selected row. After the green
+                player has placed it's piece, it will be the red player's turn.
+              </li>
+              <li>
+                The game finishes when one of the two players manages to connect
+                4 pieces in a row horizontally, vertically or diagonally.
+              </li>
+              <li>
+                To restart the game at any point, click the "restart" button
+              </li>
+              <li>Have fun!</li>
+            </ul>
+          </div>
         </div>
       </div>
     </>

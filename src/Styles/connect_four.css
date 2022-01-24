@@ -3,7 +3,18 @@
     display: grid;
     grid-template-columns: auto auto auto auto auto auto auto;
     background-color: #2780c9;
-    padding: 10px;
+    /* max-width: 60%;
+    margin: 0 auto; */
+}
+
+.connect_four {
+    background-color: #090947;
+    background-image: linear-gradient(315deg, #090947 0%, #5a585a 74%);
+    height: 100vh;
+}
+
+.text_info {
+    color: white
 }
 
 .grid-item {
@@ -15,6 +26,11 @@
     height: 80px;
     width: 80px;
     margin-top: 2%;
+    /* background: purple;
+    width: 14%;
+    margin: 1.66%;
+    float: left;
+    padding-bottom: 30%; */
 }
 
 .green-grid-item {
@@ -78,6 +94,7 @@
     font-size: xx-large;
     font-family: 'Mochiy Pop P One', sans-serif;
     padding-top: 2%;
+    color: white;
 }
 
 @media only screen and (max-width: 768px) {
