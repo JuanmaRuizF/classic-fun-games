@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&display=swap');
+.memory_game {
+    background-color: #090947;
+    background-image: linear-gradient(315deg, #090947 0%, #5a585a 74%);
+    height: 100vh;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: xx-large;
+    font-family: 'Mochiy Pop P One', sans-serif;
+    padding-top: 10%;
+    color: white;
+}
