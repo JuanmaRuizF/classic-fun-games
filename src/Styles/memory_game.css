@@ -17,10 +17,44 @@
         text-shadow: 2px 0 0 rgb(3, 2, 2), -2px 0 0 rgb(3, 2, 2), 0 2px 0 rgb(3, 2, 2), 0 -2px 0 rgb(3, 2, 2), 1px 1px rgb(3, 2, 2), -1px -1px 0 rgb(3, 2, 2), 1px -1px 0 rgb(3, 2, 2), -1px 1px 0 rgb(3, 2, 2);
     }
     
-    .card_grid {
+    .settings {
+        color: rgb(172, 152, 152);
+        text-align: right;
+        padding-top: 2%;
+    }
+    
+    .turns {
+        font-size: x-large;
+        font-family: 'Mochiy Pop P One', sans-serif;
+        padding-top: 2%;
+        text-align: center;
+        color: white;
+    }
+    
+    .title_container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 20px;
+    }
+    
+    .card_grid_6 {
         margin-top: 40px;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-gap: 20px;
+    }
+    
+    .card_grid_8 {
+        margin-top: 40px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-gap: 15px;
+    }
+    
+    .card_grid_10 {
+        margin-top: 40px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
         grid-gap: 20px;
     }
     
@@ -52,13 +86,11 @@
         padding-top: 5%;
     }
     
-    .turns {
-        font-size: x-large;
-        font-family: 'Mochiy Pop P One', sans-serif;
+    .text_info_difficulty {
         display: flex;
-        padding-top: 2%;
         justify-content: center;
         color: white;
+        padding-top: 2%;
     }
     
     .loading_content {

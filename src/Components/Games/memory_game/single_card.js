@@ -7,7 +7,6 @@ const single_card = ({ picture, handleChoice, flipped, disabled }) => {
     }
   };
 
-  //   console.log(flipped);
   return (
     <div className="card">
       <div className={flipped ? "flipped" : ""}>

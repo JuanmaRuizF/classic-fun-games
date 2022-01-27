@@ -1,103 +1,25 @@
-import React, { useRef } from "react";
+import React from "react";
 import Navbar from "../../Navbar_components/Navbar";
 import Sidebar from "../../Navbar_components/Sidebar";
 import Submenu from "../../Navbar_components/Submenu";
 import { useGlobalContext } from "../../../context";
 import "../../../Styles/memory_game.css";
 import { useState, useEffect } from "react";
-import SingleCard from "./single_card";
-import LoadingComponent from "./loading";
-import { Modal, Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
+import GameImplementation from "./game_implementation";
 
 const Memory_game = () => {
   const { closeSubmenu } = useGlobalContext();
 
-  const [pictures, setPictures] = useState([]);
-  const [turns, setTurns] = useState(0);
-  const [loading, setLoading] = useState(true);
-  const [choiceOne, setChoiceOne] = useState(null);
-  const [choiceTwo, setChoiceTwo] = useState(null);
-  const [disabled, setDisabled] = useState(false);
-  const [pairs, setPairs] = useState(0);
-  const [gameFinished, setGameFinished] = useState(false);
-
-  const load_pictures = async () => {
-    let cards = [];
-    for (let i = 0; i < 6; i++) {
-      try {
-        const response = await fetch("https://picsum.photos/200");
-        cards.push({ img: response.url, match: false });
-      } catch (error) {
-        console.log(error.status);
-      }
-    }
-    cards = [...cards, ...cards]
-      .sort(() => 0.5 - Math.random())
-      .map((card) => ({ ...card, id: Math.random() }));
-
-    setPictures(cards);
-    setLoading(false);
-  };
+  const [displayGame, setDisplayGame] = useState(false);
+  const [pairs, setPairs] = useState(null);
+  const [gridStyle, setGridStyle] = useState("");
 
   useEffect(() => {
-    load_pictures();
-    setChoiceOne(null);
-    setChoiceTwo(null);
-    setPairs(0);
-    setGameFinished(false);
-  }, []);
-
-  const resetValues = () => {
-    setChoiceTwo(null);
-    setChoiceOne(null);
-
-    setTurns(turns + 1);
-    setDisabled(false);
-  };
-
-  const handleChoice = (card) => {
-    choiceOne ? setChoiceTwo(card) : setChoiceOne(card);
-  };
-
-  useEffect(() => {
-    if (choiceOne && choiceTwo) {
-      setDisabled(true);
-      if (choiceOne.img === choiceTwo.img) {
-        setPictures((prevCards) => {
-          return prevCards.map((card) => {
-            if (card.img === choiceOne.img) {
-              return { ...card, match: true };
-            } else {
-              return card;
-            }
-          });
-        });
-        setPairs((pairs) => pairs + 1);
-        console.log(pairs);
-        if (pairs === 5) {
-          console.log("finished");
-          setGameFinished(true);
-        }
-        resetValues();
-      } else {
-        setTimeout(() => resetValues(), 1000);
-      }
+    if (pairs > 0) {
+      setDisplayGame(true);
     }
-  }, [choiceOne, choiceTwo]);
-
-  const handleClose = () => {
-    setGameFinished(false);
-  };
-
-  const newGame = () => {
-    setLoading(true);
-    load_pictures();
-    setChoiceOne(null);
-    setChoiceTwo(null);
-    setPairs(0);
-    setGameFinished(false);
-    setTurns(0);
-  };
+  }, [pairs]);
 
   return (
     <>
@@ -108,64 +30,79 @@ const Memory_game = () => {
         <div className="container" onMouseOver={closeSubmenu}>
           <div className="title">Memory Game</div>
 
-          {loading ? (
-            <LoadingComponent></LoadingComponent>
+          {displayGame ? (
+            <GameImplementation
+              pairs={pairs}
+              gridStyle={gridStyle}
+              setDisplayGame={setDisplayGame}
+            ></GameImplementation>
           ) : (
             <>
-              <Modal show={gameFinished} onHide={handleClose}>
-                <Modal.Header closeButton>
-                  <Modal.Title>Game Finished!</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>Game finished in {turns} turns</Modal.Body>
-                <Modal.Footer>
-                  <Button variant="primary" onClick={newGame}>
-                    New Game
-                  </Button>
-                </Modal.Footer>
-              </Modal>
-              <div className="turns">Turn: {turns}</div>
-              <div className="card_grid">
-                {pictures.map((picture) => (
-                  <SingleCard
-                    picture={picture}
-                    handleChoice={handleChoice}
-                    flipped={
-                      picture === choiceOne ||
-                      picture === choiceTwo ||
-                      picture.match
-                    }
-                    disabled={disabled}
-                  ></SingleCard>
-                ))}
+              <div className="text_info_difficulty">
+                <h3>Select difficulty</h3>
               </div>
+
               <div className="new_game_button">
-                <Button variant="primary" onClick={newGame}>
-                  New Game
+                <Button
+                  variant="primary"
+                  onClick={() => (
+                    <>
+                      {setPairs(6)} {setGridStyle("card_grid_6")}
+                    </>
+                  )}
+                >
+                  6 pairs
                 </Button>
               </div>
 
-              <div className="text_info">
-                <h3>Game Rules</h3>
-                <ol>
-                  <li>
-                    There is a set number of cards. Each card has a duplicate.
-                    The goal this game is to click both duplicates in the same
-                    turn until all the cards are displayed.
-                  </li>
-                  <li>
-                    All the pictures are obtained from a random picture API, so
-                    each game is guaranteed to be different!
-                  </li>
-                  <li>
-                    Try to display all the cards in the least number of turns!
-                  </li>
-                  <li>
-                    To restart the game at any point, click the "restart" button
-                  </li>
-                </ol>
+              <div className="new_game_button">
+                <Button
+                  variant="primary"
+                  onClick={() => (
+                    <>
+                      {setPairs(8)} {setGridStyle("card_grid_8")}
+                    </>
+                  )}
+                >
+                  8 pairs
+                </Button>
+              </div>
+
+              <div className="new_game_button">
+                <Button
+                  variant="primary"
+                  onClick={() => (
+                    <>
+                      {setPairs(10)} {setGridStyle("card_grid_10")}
+                    </>
+                  )}
+                >
+                  10 pairs
+                </Button>
               </div>
             </>
           )}
+
+          <div className="text_info">
+            <h3>Game Rules</h3>
+            <ol>
+              <li>
+                There is a set number of cards. Each card has a duplicate. The
+                goal this game is to click both duplicates in the same turn
+                until all the cards are displayed.
+              </li>
+              <li>
+                All the pictures are obtained from a random picture API, so each
+                game is guaranteed to be different!
+              </li>
+              <li>
+                Try to display all the cards in the least number of turns!
+              </li>
+              <li>
+                To restart the game at any point, click the "restart" button
+              </li>
+            </ol>
+          </div>
         </div>
       </div>
     </>
