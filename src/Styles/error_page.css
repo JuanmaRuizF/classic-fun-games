@@ -1,0 +1,19 @@
+.error_page {
+    background-color: #090947;
+    background-image: linear-gradient(315deg, #090947 0%, #5a585a 74%);
+    min-height: 100vh;
+}
+
+.align_center {
+    color: white;
+    font-size: xx-large;
+    text-align: center;
+    right: 50%;
+    bottom: 50%;
+    transform: translate(50%, 50%);
+    position: absolute;
+}
+
+.home_page {
+    margin-top: 5%;
+}
