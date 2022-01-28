@@ -36,17 +36,20 @@ const Navbar = () => {
               games
             </button>
           </li>
-          {/* <li>
+          <li>
             <button className="link-btn" onMouseOver={displaySubmenu}>
-              developers
+              about
             </button>
-          </li> */}
+          </li>
           {/* <li>
             <button className="link-btn" onMouseOver={displaySubmenu}>
               company
             </button>
           </li> */}
         </ul>
+        {/* <button className="link-btn" onMouseOver={displaySubmenu}>
+          about
+        </button> */}
         {/* <button className="btn signin-btn">Sign in</button> */}
       </div>
     </nav>
