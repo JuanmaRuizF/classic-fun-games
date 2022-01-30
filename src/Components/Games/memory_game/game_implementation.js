@@ -70,7 +70,7 @@ const Memory_game = (props) => {
         });
         setPairs((pairs) => pairs + 1);
         console.log(pairs);
-        if (pairs === 5) {
+        if (pairs === props.pairs - 1) {
           console.log("finished");
           setGameFinished(true);
         }
