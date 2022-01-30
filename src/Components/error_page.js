@@ -4,14 +4,19 @@ import { Link } from "react-router-dom";
 import Navbar from "./Navbar_components/Navbar";
 import Sidebar from "./Navbar_components/Sidebar";
 import Submenu from "./Navbar_components/Submenu";
+import { useGlobalContext } from "../context";
+
 const Error = () => {
+  const { closeSubmenu } = useGlobalContext();
+
   return (
     <>
-      <div className="error_page">
-        <Navbar />
-        <Sidebar />
-        <Submenu />
-        <div className="align_center">
+      <Navbar />
+      <Sidebar />
+      <Submenu />
+
+      <div className="error_page" onMouseOver={closeSubmenu}>
+        <div className="align_center" onMouseOver={closeSubmenu}>
           <div>This page doesn't exist</div>
           <div>:(</div>
           <div>
