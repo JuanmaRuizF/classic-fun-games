@@ -69,9 +69,7 @@ const Memory_game = (props) => {
           });
         });
         setPairs((pairs) => pairs + 1);
-        console.log(pairs);
         if (pairs === props.pairs - 1) {
-          console.log("finished");
           setGameFinished(true);
         }
         resetValues();
