@@ -1,4 +1,4 @@
-import { FaCreditCard, FaBook, FaBriefcase, FaGamepad } from "react-icons/fa";
+import { FaInfoCircle, FaBook, FaBriefcase, FaGamepad } from "react-icons/fa";
 import React from "react";
 const sublinks = [
   {
@@ -6,14 +6,14 @@ const sublinks = [
     links: [
       { label: "connect four", icon: <FaGamepad />, url: "/connect_four" },
       { label: "memory game", icon: <FaGamepad />, url: "/memory_game" },
-      { label: "connect", icon: <FaGamepad />, url: "/products" },
+      { label: "sudoku", icon: <FaGamepad />, url: "/sudoku" },
     ],
   },
   {
     page: "about",
     links: [
-      { label: "about", icon: <FaBook />, url: "/about" },
-      { label: "contact", icon: <FaBook />, url: "/contact" },
+      { label: "about", icon: <FaInfoCircle />, url: "/about" },
+      { label: "contact", icon: <FaInfoCircle />, url: "/contact" },
     ],
   },
 ];
@@ -36,7 +36,7 @@ export default sublinks;
 //     links: [
 //       { label: "plugins", icon: <FaBook />, url: "/products" },
 //       { label: "libraries", icon: <FaBook />, url: "/products" },
-//       { label: "help", icon: <FaBook />, url: "/products" },
+//       { label: "help", icon: <FanBook />, url: "/products" },
 //       { label: "billing", icon: <FaBook />, url: "/products" },
 //     ],
 //   },

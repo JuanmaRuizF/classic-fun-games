@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&display=swap');
-.memory_game {
+.about {
     background-color: #090947;
     background-image: linear-gradient(315deg, #090947 0%, #5a585a 74%);
     height: 100vh;
@@ -13,4 +13,51 @@
     font-family: 'Mochiy Pop P One', sans-serif;
     padding-top: 10%;
     color: white;
+}
+
+.form_data {
+    color: white;
+    font-size: 1.5em;
+}
+
+.contect_info {
+    color: white;
+    font-size: 1.2em;
+    padding-top: 5%;
+    padding-bottom: 3%;
+}
+
+.about_info {
+    color: white;
+    font-size: 1.1em;
+    padding-top: 5%;
+}
+
+.paragraph_info {
+    color: white;
+    font-size: 1.1em;
+    padding-top: 1%;
+}
+
+.paragraph_info ul {
+    list-style-type: disc;
+}
+
+.table_icons {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+th,
+td {
+    padding-top: 10%;
+    padding-right: 20px;
+}
+
+a.otherButton {
+    color: #ffffff;
+}
+
+a.otherButton:visited {
+    color: #ffffff;
 }
