@@ -23,7 +23,6 @@ const check_horizontal_values = (
   for (let i = 0; i <= 6; i++) {
     horizontal_values.push(row_number + String(i));
   }
-  console.log(horizontal_values);
   let current_search = "";
   let count = 0;
   let win_condition = false;

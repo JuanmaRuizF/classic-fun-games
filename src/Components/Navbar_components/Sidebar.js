@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaTimes } from "react-icons/fa";
 import { useGlobalContext } from "../../context";
-import sublinks from "./data";
+import { sublinks_eng, sublinks_esp } from "./data";
+import { Link } from "react-router-dom";
+
 const Sidebar = () => {
-  const { isSidebarOpen, closeSidebar } = useGlobalContext();
+  const { isSidebarOpen, closeSidebar, language, updateLanguage } =
+    useGlobalContext();
+
+  useEffect(() => {
+    updateLanguage();
+  });
   return (
     <div
       className={`${
@@ -15,25 +22,51 @@ const Sidebar = () => {
           <FaTimes />
         </button>
         <div className="sidebar-links">
-          {sublinks.map((item, index) => {
-            const { links, page } = item;
-            return (
-              <article key={index}>
-                <h4>{page}</h4>
-                <div className="sidebar-sublinks">
-                  {links.map((link, index) => {
-                    const { url, icon, label } = link;
-                    return (
-                      <a key={index} href={url}>
-                        {icon}
-                        {label}
-                      </a>
-                    );
-                  })}
-                </div>
-              </article>
-            );
-          })}
+          {language === "English" ? (
+            <div>
+              {sublinks_eng.map((item, index) => {
+                const { links, page } = item;
+                return (
+                  <article key={index}>
+                    <h4>{page}</h4>
+                    <div className="sidebar-sublinks">
+                      {links.map((link, index) => {
+                        const { url, icon, label } = link;
+                        return (
+                          <Link key={index} to={url}>
+                            {icon}
+                            {label}
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          ) : (
+            <div>
+              {sublinks_esp.map((item, index) => {
+                const { links, page } = item;
+                return (
+                  <article key={index}>
+                    <h4>{page}</h4>
+                    <div className="sidebar-sublinks">
+                      {links.map((link, index) => {
+                        const { url, icon, label } = link;
+                        return (
+                          <Link key={index} to={url}>
+                            {icon}
+                            {label}
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          )}
         </div>
       </aside>
     </div>
@@ -41,3 +74,7 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
+// <a key={index} href={url}>
+//   {icon}
+//   {label}
+// </a>

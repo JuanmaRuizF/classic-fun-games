@@ -1,6 +1,7 @@
-import { FaInfoCircle, FaBook, FaBriefcase, FaGamepad } from "react-icons/fa";
+import { FaInfoCircle, FaGamepad } from "react-icons/fa";
 import React from "react";
-const sublinks = [
+
+const sublinks_eng = [
   {
     page: "games",
     links: [
@@ -18,35 +19,22 @@ const sublinks = [
   },
 ];
 
-export default sublinks;
+const sublinks_esp = [
+  {
+    page: "juegos",
+    links: [
+      { label: "conecta 4", icon: <FaGamepad />, url: "/connect_four" },
+      { label: "juego de memoria", icon: <FaGamepad />, url: "/memory_game" },
+      { label: "sudoku", icon: <FaGamepad />, url: "/sudoku" },
+    ],
+  },
+  {
+    page: "acerca de",
+    links: [
+      { label: "acerca de", icon: <FaInfoCircle />, url: "/about" },
+      { label: "contacto", icon: <FaInfoCircle />, url: "/contact" },
+    ],
+  },
+];
 
-// import { FaCreditCard, FaBook, FaBriefcase } from "react-icons/fa";
-// import React from "react";
-// const sublinks = [
-//   {
-//     page: "products",
-//     links: [
-//       { label: "payment", icon: <FaCreditCard />, url: "/products" },
-//       { label: "terminal", icon: <FaCreditCard />, url: "/products" },
-//       { label: "connect", icon: <FaCreditCard />, url: "/products" },
-//     ],
-//   },
-//   {
-//     page: "developers",
-//     links: [
-//       { label: "plugins", icon: <FaBook />, url: "/products" },
-//       { label: "libraries", icon: <FaBook />, url: "/products" },
-//       { label: "help", icon: <FanBook />, url: "/products" },
-//       { label: "billing", icon: <FaBook />, url: "/products" },
-//     ],
-//   },
-//   {
-//     page: "company",
-//     links: [
-//       { label: "about", icon: <FaBriefcase />, url: "/products" },
-//       { label: "customers", icon: <FaBriefcase />, url: "/products" },
-//     ],
-//   },
-// ];
-
-// export default sublinks;
+export { sublinks_eng, sublinks_esp };
