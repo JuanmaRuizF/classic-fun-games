@@ -7,14 +7,18 @@ import "../../../Styles/memory_game.css";
 import { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import GameImplementation from "./game_implementation";
+import data from "./translation_data";
 
 const Memory_game = () => {
-  const { closeSubmenu } = useGlobalContext();
+  const { closeSubmenu, language, updateLanguage } = useGlobalContext();
 
   const [displayGame, setDisplayGame] = useState(false);
   const [pairs, setPairs] = useState(null);
   const [gridStyle, setGridStyle] = useState("");
 
+  useEffect(() => {
+    updateLanguage();
+  });
   useEffect(() => {
     if (pairs > 0) {
       setDisplayGame(true);
@@ -28,18 +32,28 @@ const Memory_game = () => {
         <Sidebar />
         <Submenu />
         <div className="container" onMouseOver={closeSubmenu}>
-          <div className="title">Memory Game</div>
+          <div className="title">
+            {language === "English"
+              ? data["English"]["title"]
+              : data["Spanish"]["title"]}
+          </div>
 
           {displayGame ? (
             <GameImplementation
               pairs={pairs}
               gridStyle={gridStyle}
               setDisplayGame={setDisplayGame}
+              setPairs={setPairs}
             ></GameImplementation>
           ) : (
             <>
               <div className="text_info_difficulty">
-                <h3>Select difficulty</h3>
+                <h3>
+                  {" "}
+                  {language === "English"
+                    ? data["English"]["dificulty"]
+                    : data["Spanish"]["dificulty"]}
+                </h3>
               </div>
 
               <div className="new_game_button">
@@ -51,7 +65,9 @@ const Memory_game = () => {
                     </>
                   )}
                 >
-                  6 pairs
+                  {language === "English"
+                    ? data["English"]["par6"]
+                    : data["Spanish"]["par6"]}
                 </Button>
               </div>
 
@@ -64,7 +80,9 @@ const Memory_game = () => {
                     </>
                   )}
                 >
-                  8 pairs
+                  {language === "English"
+                    ? data["English"]["par8"]
+                    : data["Spanish"]["par8"]}
                 </Button>
               </div>
 
@@ -77,31 +95,43 @@ const Memory_game = () => {
                     </>
                   )}
                 >
-                  10 pairs
+                  {language === "English"
+                    ? data["English"]["par10"]
+                    : data["Spanish"]["par10"]}
                 </Button>
               </div>
             </>
           )}
 
           <div className="text_info">
-            <h3>Game Rules</h3>
-            <ol>
+            <h3>
+              {" "}
+              {language === "English"
+                ? data["English"]["rules"]
+                : data["Spanish"]["rules"]}
+            </h3>
+            <ul>
               <li>
-                There is a set number of cards. Each card has a duplicate. The
-                goal this game is to click both duplicates in the same turn
-                until all the cards are displayed.
+                {language === "English"
+                  ? data["English"]["p1"]
+                  : data["Spanish"]["p1"]}
               </li>
               <li>
-                All the pictures are obtained from a random picture API, so each
-                game is guaranteed to be different!
+                {language === "English"
+                  ? data["English"]["p2"]
+                  : data["Spanish"]["p2"]}
               </li>
               <li>
-                Try to display all the cards in the least number of turns!
+                {language === "English"
+                  ? data["English"]["p3"]
+                  : data["Spanish"]["p3"]}
               </li>
               <li>
-                To restart the game at any point, click the "restart" button
+                {language === "English"
+                  ? data["English"]["p4"]
+                  : data["Spanish"]["p4"]}
               </li>
-            </ol>
+            </ul>
           </div>
         </div>
       </div>

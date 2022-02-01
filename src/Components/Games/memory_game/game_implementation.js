@@ -5,6 +5,7 @@ import SingleCard from "./single_card";
 import LoadingComponent from "./loading";
 import { Modal, Button } from "react-bootstrap";
 import { IoMdSettings } from "react-icons/io";
+import { useGlobalContext } from "../../../context";
 
 const Memory_game = (props) => {
   const [pictures, setPictures] = useState([]);
@@ -15,6 +16,7 @@ const Memory_game = (props) => {
   const [disabled, setDisabled] = useState(false);
   const [pairs, setPairs] = useState(0);
   const [gameFinished, setGameFinished] = useState(false);
+  const { language } = useGlobalContext();
 
   const load_pictures = async () => {
     let cards = [];
@@ -101,38 +103,42 @@ const Memory_game = (props) => {
         <>
           <Modal show={gameFinished} onHide={handleClose}>
             <Modal.Header closeButton>
-              <Modal.Title>Game Finished!</Modal.Title>
+              <Modal.Title>
+                {language === "English"
+                  ? "Game Finished!"
+                  : "Partida terminada"}
+              </Modal.Title>
             </Modal.Header>
-            <Modal.Body>Game finished in {turns} turns</Modal.Body>
+            <Modal.Body>
+              {language === "English" ? (
+                <div>Game finished in {turns} turns</div>
+              ) : (
+                <div>Partida finalizada en {turns} turnos</div>
+              )}
+            </Modal.Body>
             <Modal.Footer>
               <Button variant="primary" onClick={newGame}>
-                New Game
+                {language === "English" ? "New Game" : "Nueva Partida"}
               </Button>
             </Modal.Footer>
           </Modal>
 
           <div className="title_container">
             <div></div>
-            <div className="turns">Turn: {turns}</div>
+            <div className="turns">
+              {language === "English" ? "Turn:" : "Turno:"} {turns}
+            </div>
             <div className="settings">
               <IoMdSettings
                 size="2em"
                 onClick={() => {
+                  props.setPairs(null);
                   props.setDisplayGame(false);
                 }}
               ></IoMdSettings>
             </div>
           </div>
 
-          {/* <div className="turns">Turn: {turns}</div>
-          <div className="settings">
-            <IoMdSettings
-              size="2em"
-              onClick={() => {
-                props.setDisplayGame(false);
-              }}
-            ></IoMdSettings>
-          </div> */}
           <div className={props.gridStyle}>
             {pictures.map((picture, i) => (
               <div key={i}>
@@ -151,7 +157,7 @@ const Memory_game = (props) => {
           </div>
           <div className="new_game_button">
             <Button variant="primary" onClick={newGame}>
-              New Game
+              {language === "English" ? "New Game" : "Nueva Partida"}
             </Button>
           </div>
         </>

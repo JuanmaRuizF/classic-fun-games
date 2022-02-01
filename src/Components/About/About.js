@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "../Navbar_components/Navbar";
 import Sidebar from "../Navbar_components/Sidebar";
 import Submenu from "../Navbar_components/Submenu";
@@ -8,9 +8,13 @@ import { Link } from "react-router-dom";
 import { GrMail } from "react-icons/gr";
 import { BsLinkedin } from "react-icons/bs";
 import { GiBriefcase } from "react-icons/gi";
+import data from "./translation_data";
 
 const Memory_game = () => {
-  const { closeSubmenu } = useGlobalContext();
+  const { closeSubmenu, language, updateLanguage } = useGlobalContext();
+  useEffect(() => {
+    updateLanguage();
+  });
   return (
     <>
       <Navbar />
@@ -18,28 +22,37 @@ const Memory_game = () => {
       <Submenu />
       <div className="about" onMouseOver={closeSubmenu}>
         <div className="container" onMouseOver={closeSubmenu}>
-          <div className="title">About</div>
+          <div className="title">
+            {language === "English"
+              ? data["English"]["About"]["title"]
+              : data["Spanish"]["About"]["title"]}
+          </div>
 
           <p className="about_info">
-            Games are fun! That's what I thought when deciding to work on this
-            project. This website is intended to present an implementation of
-            several of the best classic games, while giving them a personal
-            touch.
+            {language === "English"
+              ? data["English"]["About"]["about1"]
+              : data["Spanish"]["About"]["about1"]}
           </p>
           <p className="paragraph_info">
-            There are many more games in mind that are planned to be implemented
-            in the future. Some of them are the following:
+            {language === "English"
+              ? data["English"]["About"]["about2"]
+              : data["Spanish"]["About"]["about2"]}
           </p>
-          <p className="paragraph_info">
+          <div className="paragraph_info">
             <ul>
-              <li>Hangman</li>
-              <li>Tetris</li>
-              <li>Higher/Lower</li>
-              <li>Dino Runner</li>
+              {language === "English"
+                ? data["English"]["About"]["futureGames"].map((game) => {
+                    return <li key={game}>{game}</li>;
+                  })
+                : data["Spanish"]["About"]["futureGames"].map((game) => {
+                    return <li key={game}>{game}</li>;
+                  })}
             </ul>
-          </p>
+          </div>
           <p className="paragraph_info">
-            Want another game to be implemented? Found any problems? Contact me:
+            {language === "English"
+              ? data["English"]["About"]["about3"]
+              : data["Spanish"]["About"]["about3"]}
           </p>
 
           <table className="table_icons">

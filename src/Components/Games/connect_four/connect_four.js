@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import "../../../Styles/connect_four.css";
 import create_grid_elements from "./create_grid";
 import put_value_in_place from "./value_in_place";
@@ -8,10 +8,14 @@ import Navbar from "../../Navbar_components/Navbar";
 import Sidebar from "../../Navbar_components/Sidebar";
 import Submenu from "../../Navbar_components/Submenu";
 import { useGlobalContext } from "../../../context";
+import data from "./translation_data";
 
 const Connect_four = () => {
   let elements = useRef(create_grid_elements()); // para que no se ejecute siempre esto al renderizar de nuevo la pantalla
-  const { closeSubmenu } = useGlobalContext();
+  const { closeSubmenu, language, updateLanguage } = useGlobalContext();
+  useEffect(() => {
+    updateLanguage();
+  });
 
   const handleClick = (key) => {
     if (users_turn === "green") {
@@ -68,7 +72,6 @@ const Connect_four = () => {
       });
     }
   };
-
   const [users_turn, setUsersTurn] = useState("green");
   const [grid, setGrid] = useState(elements);
   const [gameWon, setGameWon] = useState(false);
@@ -83,14 +86,6 @@ const Connect_four = () => {
     setWinner("");
   };
 
-  const is_green = () => {
-    if (users_turn === "green") {
-      return true;
-    } else {
-      return false;
-    }
-  };
-
   return (
     <>
       <div className="connect_four">
@@ -98,18 +93,39 @@ const Connect_four = () => {
         <Sidebar />
         <Submenu />
         <div className="container" onMouseOver={closeSubmenu}>
-          <div className="title">Connect 4</div>
+          <div className="title">
+            {language === "English"
+              ? data["English"]["title"]
+              : data["Spanish"]["title"]}
+          </div>
           {gameWon ? (
             <Modal show={gameWon} onHide={handleClose}>
               <Modal.Header closeButton>
-                <Modal.Title>Game Finished</Modal.Title>
+                <Modal.Title>
+                  {language === "English"
+                    ? data["English"]["gameFinish"]
+                    : data["Spanish"]["gameFinish"]}
+                </Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                {winner.charAt(0).toUpperCase() + winner.slice(1)} won the game
+                {language === "English" ? (
+                  <div>
+                    {winner.charAt(0).toUpperCase() + winner.slice(1)}{" "}
+                    {data["English"]["gameWon"]}
+                  </div>
+                ) : (
+                  <div>
+                    {winner === "green"
+                      ? data["Spanish"]["gameWonGreen"]
+                      : data["Spanish"]["gameWonRed"]}
+                  </div>
+                )}
               </Modal.Body>
               <Modal.Footer>
                 <Button variant="primary" onClick={handleClose}>
-                  New Game
+                  {language === "English"
+                    ? data["English"]["newGame"]
+                    : data["Spanish"]["newGame"]}
                 </Button>
               </Modal.Footer>
             </Modal>
@@ -117,21 +133,21 @@ const Connect_four = () => {
             <div></div>
           )}
 
-          {is_green ? (
-            <div className="center_div">
-              <div className={users_turn}>
-                {users_turn.charAt(0).toUpperCase() + users_turn.slice(1)}'s
-                Turn
-              </div>
+          <div className="center_div">
+            <div className={users_turn}>
+              {language === "English" ? (
+                <div>
+                  {users_turn.charAt(0).toUpperCase() + users_turn.slice(1)}'s
+                  Turn
+                </div>
+              ) : users_turn === "green" ? (
+                "Turno del verde"
+              ) : (
+                "Turno del rojo"
+              )}
             </div>
-          ) : (
-            <div className="center_div">
-              <div className={users_turn}>
-                {users_turn.charAt(0).toUpperCase() + users_turn.slice(1)}'s
-                Turn
-              </div>
-            </div>
-          )}
+          </div>
+
           <div className="grid-container">
             {grid.current.map((element) => {
               return (
@@ -141,9 +157,7 @@ const Connect_four = () => {
                   onClick={() => {
                     handleClick(element["id"]);
                   }}
-                >
-                  {/* {element["id"]} */}
-                </div>
+                ></div>
               );
             })}
           </div>
@@ -153,27 +167,33 @@ const Connect_four = () => {
               onClick={handleClose}
               className="restart_button"
             >
-              Restart
+              {language === "English"
+                ? data["English"]["newGame"]
+                : data["Spanish"]["newGame"]}
             </Button>
           </div>
           <div className="text_info">
-            <h3>Game Rules</h3>
-            <ul>
-              <li>
-                There are 2 players: green and red. The green player starts and
-                places the first piece. The piece will automatically go to the
-                first avaiable position of the selected row. After the green
-                player has placed it's piece, it will be the red player's turn.
-              </li>
-              <li>
-                The game finishes when one of the two players manages to connect
-                4 pieces in a row horizontally, vertically or diagonally.
-              </li>
-              <li>
-                To restart the game at any point, click the "restart" button
-              </li>
-              <li>Have fun!</li>
-            </ul>
+            {language === "English" ? (
+              <h3>{data["English"]["rules"]}</h3>
+            ) : (
+              <h3>{data["Spanish"]["rules"]}</h3>
+            )}
+
+            {language === "English" ? (
+              <ul>
+                <li>{data["English"]["p1"]}</li>
+                <li>{data["English"]["p2"]}</li>
+                <li>{data["English"]["p3"]}</li>
+                <li>{data["English"]["p4"]}</li>
+              </ul>
+            ) : (
+              <ul>
+                <li>{data["Spanish"]["p1"]}</li>
+                <li>{data["Spanish"]["p2"]}</li>
+                <li>{data["Spanish"]["p3"]}</li>
+                <li>{data["Spanish"]["p4"]}</li>
+              </ul>
+            )}
           </div>
         </div>
       </div>
