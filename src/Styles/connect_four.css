@@ -133,6 +133,10 @@
     text-shadow: 2px 0 0 rgb(3, 2, 2), -2px 0 0 rgb(3, 2, 2), 0 2px 0 rgb(3, 2, 2), 0 -2px 0 rgb(3, 2, 2), 1px 1px rgb(3, 2, 2), -1px -1px 0 rgb(3, 2, 2), 1px -1px 0 rgb(3, 2, 2), -1px 1px 0 rgb(3, 2, 2);
 }
 
+.text_info ul {
+    list-style-type: disc;
+}
+
 @media only screen and (max-width: 768px) {
     .grid-container {
         display: grid;

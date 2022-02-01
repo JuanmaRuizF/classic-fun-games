@@ -167,7 +167,7 @@ Stripe Styles
 }
 
 .nav-center {
-    width: 90vw;
+    /* width: 90vw; */
     max-width: var(--max-width);
 }
 
@@ -304,8 +304,8 @@ Stripe Styles
         display: block;
         justify-self: center;
         display: grid;
-        /* grid-template-columns: 1fr 1fr 1fr; */
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
+        /* grid-template-columns: 1fr 1fr; */
         text-align: center;
         height: 100%;
         display: grid;
@@ -323,6 +323,18 @@ Stripe Styles
         text-transform: capitalize;
         letter-spacing: 1px;
         width: 10rem;
+    }
+    .link-btn-language {
+        height: 100%;
+        background: transparent;
+        border-color: transparent;
+        font-size: 1.1rem;
+        color: white;
+        text-transform: capitalize;
+        letter-spacing: 1px;
+        width: 10rem;
+        padding-top: 19%;
+        margin-left: 10%;
     }
     .content {
         padding-top: 15%;

@@ -30,6 +30,10 @@
         color: white;
     }
     
+    .text_info ul {
+        list-style-type: disc;
+    }
+    
     .title_container {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;

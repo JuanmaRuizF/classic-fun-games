@@ -15,6 +15,12 @@
     color: white;
 }
 
+.msg_sent {
+    font-size: 1.5em;
+    color: rgb(114, 9, 9);
+    font-style: italic;
+}
+
 .form_data {
     color: white;
     font-size: 1.5em;
