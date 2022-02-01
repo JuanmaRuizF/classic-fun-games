@@ -28,6 +28,11 @@ const Memory_game = (props) => {
         console.log(error.status);
       }
     }
+
+    if (new Set(cards).size !== cards.length) {
+      load_pictures();
+    }
+
     cards = [...cards, ...cards]
       .sort(() => 0.5 - Math.random())
       .map((card) => ({ ...card, id: Math.random() }));
