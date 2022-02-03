@@ -1,15 +1,20 @@
+//utility imports
 import React from "react";
 import ReactDOM from "react-dom";
 import "./Styles/index.css";
-import App from "./App";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AppProvider } from "./context";
+//info page imports
 import Error from "./Components/error_page";
-import ConnectFour from "./Components/Games/connect_four/connect_four";
-import MemoryGame from "./Components/Games/memory_game/memory_game";
 import About from "./Components/About/About";
 import Contact from "./Components/About/Contact";
-import { AppProvider } from "./context";
+import App from "./App";
+
+//Game imports
+import ConnectFour from "./Components/Games/connect_four/connect_four";
+import MemoryGame from "./Components/Games/memory_game/memory_game";
+import Sudoku from "./Components/Games/sudoku/sudoku";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -22,6 +27,7 @@ ReactDOM.render(
           <Route path="memory_game" element={<MemoryGame />} />
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="sudoku" element={<Sudoku></Sudoku>} />
 
           <Route path="*" element={<Error />} />
         </Routes>
