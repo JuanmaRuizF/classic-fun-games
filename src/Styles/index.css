@@ -384,6 +384,9 @@ Stripe Styles
         width: 50%;
         text-align: center;
     }
+    .nav-center {
+        width: 90vw;
+    }
 }
 
 

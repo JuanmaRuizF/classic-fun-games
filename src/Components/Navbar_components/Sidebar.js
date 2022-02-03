@@ -3,10 +3,16 @@ import { FaTimes } from "react-icons/fa";
 import { useGlobalContext } from "../../context";
 import { sublinks_eng, sublinks_esp } from "./data";
 import { Link } from "react-router-dom";
+import { Dropdown } from "react-bootstrap";
 
 const Sidebar = () => {
-  const { isSidebarOpen, closeSidebar, language, updateLanguage } =
-    useGlobalContext();
+  const {
+    isSidebarOpen,
+    closeSidebar,
+    language,
+    updateLanguage,
+    switchLanguage,
+  } = useGlobalContext();
 
   useEffect(() => {
     updateLanguage();
@@ -43,6 +49,26 @@ const Sidebar = () => {
                   </article>
                 );
               })}
+              <Dropdown
+                className="link-btn-language"
+                size="lg"
+                onSelect={(e) => {
+                  switchLanguage(e);
+                }}
+              >
+                <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+                  {language === "English" ? "Language" : "Idioma"}
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <Dropdown.Item eventKey="English">
+                    {language === "English" ? "English" : "Inglés"}
+                  </Dropdown.Item>
+                  <Dropdown.Item eventKey="Spanish">
+                    {language === "English" ? "Spanish" : "Español"}
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
             </div>
           ) : (
             <div>
@@ -65,6 +91,26 @@ const Sidebar = () => {
                   </article>
                 );
               })}
+              <Dropdown
+                className="link-btn-language"
+                size="lg"
+                onSelect={(e) => {
+                  switchLanguage(e);
+                }}
+              >
+                <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+                  {language === "English" ? "Language" : "Idioma"}
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <Dropdown.Item eventKey="English">
+                    {language === "English" ? "English" : "Inglés"}
+                  </Dropdown.Item>
+                  <Dropdown.Item eventKey="Spanish">
+                    {language === "English" ? "Spanish" : "Español"}
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
             </div>
           )}
         </div>
