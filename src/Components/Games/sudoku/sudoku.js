@@ -5,52 +5,25 @@ import Submenu from "../../Navbar_components/Submenu";
 import { useGlobalContext } from "../../../context";
 import "../../../Styles/sudoku.css";
 import { useState, useEffect } from "react";
-import { Button } from "react-bootstrap";
 import data from "./translation_data";
-import BoardElement from "./board_element";
-import Buttons from "./button_numbers";
-import LoadingComponent from "./loading";
+import { Button } from "react-bootstrap";
+
+import GameImplementation from "./game_implementation";
 
 const Sudoku = () => {
   const { closeSubmenu, language, updateLanguage } = useGlobalContext();
-  const [initialBoard, setInitialBoard] = useState([]);
-  const [selectedBox, setSelectedBox] = useState(null);
-  const [selectedNumber, setSelectedNumber] = useState(null);
-
+  const [displayGame, setDisplayGame] = useState(false);
+  // const [difficulty, setDifficulty] = useState("hard");
+  const [difficulty, setDifficulty] = useState("");
   useEffect(() => {
     updateLanguage();
   }, []);
 
   useEffect(() => {
-    if (selectedNumber > -1 && selectedBox > -1) {
-      const copy_array = [...initialBoard];
-      console.log(copy_array);
-      copy_array[selectedBox] = selectedNumber;
-      console.log(copy_array);
-      setInitialBoard(copy_array);
-      // console.log(initialBoard);
+    if (difficulty > "") {
+      setDisplayGame(true);
     }
-  }, [selectedBox]);
-
-  const generate_sudoku = async () => {
-    let board;
-    setSelectedNumber(null);
-    setSelectedBox(null);
-    try {
-      let response = await fetch(
-        "https://sugoku.herokuapp.com/board?difficulty=hard"
-      );
-      response = await response.json();
-      board = [].concat(...response["board"]);
-    } catch (error) {
-      console.log(error.status);
-    }
-    setInitialBoard(board);
-  };
-
-  useEffect(() => {
-    generate_sudoku();
-  }, []);
+  }, [difficulty]);
 
   return (
     <>
@@ -64,22 +37,49 @@ const Sudoku = () => {
               ? data["English"]["title"]
               : data["Spanish"]["title"]}
           </div>
-          <div className="sudoku_grid">
-            {initialBoard.map((element, i) => {
-              return (
-                <BoardElement
-                  key={i}
-                  element={element}
-                  position={i}
-                  setSelectedBox={setSelectedBox}
-                ></BoardElement>
-              );
-            })}
-          </div>
-          <div className="buttons_grid">
-            <Buttons setSelectedNumber={setSelectedNumber}></Buttons>
-          </div>
-          <button onClick={generate_sudoku}>New Sudoku</button>
+          {displayGame ? (
+            <GameImplementation
+              difficulty={difficulty}
+              setDifficulty={setDifficulty}
+              setDisplayGame={setDisplayGame}
+            ></GameImplementation>
+          ) : (
+            <>
+              <div className="text_info_difficulty">
+                <h3>
+                  {" "}
+                  {language === "English"
+                    ? data["English"]["dificulty"]
+                    : data["Spanish"]["dificulty"]}
+                </h3>
+              </div>
+              <div className="new_game_button">
+                <Button
+                  variant="primary"
+                  onClick={() => <>{setDifficulty("hard")}</>}
+                >
+                  {language === "English" ? "Hard" : "Difícil"}
+                </Button>
+              </div>
+              <div className="new_game_button">
+                <Button
+                  variant="primary"
+                  onClick={() => <>{setDifficulty("medium")}</>}
+                >
+                  {language === "English" ? "Medium" : "Medio"}
+                </Button>
+              </div>
+              <div className="new_game_button">
+                <Button
+                  variant="primary"
+                  onClick={() => <>{setDifficulty("easy")}</>}
+                >
+                  {language === "English" ? "Easy" : "Fácil"}
+                </Button>
+              </div>
+            </>
+          )}
+
           <div className="text_info">
             {language === "English" ? (
               <h3>{data["English"]["rules"]}</h3>
@@ -89,17 +89,15 @@ const Sudoku = () => {
 
             {language === "English" ? (
               <ul>
-                <li>{data["English"]["p1"]}</li>
-                <li>{data["English"]["p2"]}</li>
-                <li>{data["English"]["p3"]}</li>
-                <li>{data["English"]["p4"]}</li>
+                {data["English"]["paragraphs"].map((paragraph, i) => {
+                  return <li key={i}>{paragraph}</li>;
+                })}
               </ul>
             ) : (
               <ul>
-                <li>{data["Spanish"]["p1"]}</li>
-                <li>{data["Spanish"]["p2"]}</li>
-                <li>{data["Spanish"]["p3"]}</li>
-                <li>{data["Spanish"]["p4"]}</li>
+                {data["Spanish"]["paragraphs"].map((paragraph, i) => {
+                  return <li key={i}>{paragraph}</li>;
+                })}
               </ul>
             )}
           </div>
@@ -110,3 +108,13 @@ const Sudoku = () => {
 };
 
 export default Sudoku;
+
+// board = [].concat(...response["board"]);
+// for (let i = 0; i < board.length; i++) {
+//   //[elemento, es valor inicial?]
+//   if (board[i] > 0) {
+//     board[i] = [board[i], true];
+//   } else {
+//     board[i] = [board[i], false];
+//   }
+// }

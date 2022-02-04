@@ -27,20 +27,11 @@ const Button_numbers = (props) => {
     [9, false],
   ];
 
-  // useEffect(() => {
-  //   setNumbers([
-  //     [0, false],
-  //     [1, false],
-  //     [2, false],
-  //     [3, false],
-  //     [4, false],
-  //     [5, false],
-  //     [6, false],
-  //     [7, false],
-  //     [8, false],
-  //     [9, false],
-  //   ]);
-  // }, []);
+  useEffect(() => {
+    if (props.selectedNumber === null) {
+      setNumbers(copy);
+    }
+  }, [props.selectedNumber]);
 
   const handleClick = (element) => {
     props.setSelectedNumber(element[0]);
@@ -62,7 +53,7 @@ const Button_numbers = (props) => {
     <>
       {numbers.map((element) => {
         return (
-          <div key={element[0]}>
+          <div key={element[0]} className="center_options">
             {element[1] ? (
               <div
                 onClick={() => {
