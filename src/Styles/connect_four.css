@@ -10,7 +10,7 @@
 .connect_four {
     background-color: #090947;
     background-image: linear-gradient(315deg, #090947 0%, #5a585a 74%);
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .text_info {

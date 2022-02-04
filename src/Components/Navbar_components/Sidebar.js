@@ -39,10 +39,12 @@ const Sidebar = () => {
                       {links.map((link, index) => {
                         const { url, icon, label } = link;
                         return (
-                          <Link key={index} to={url}>
-                            {icon}
-                            {label}
-                          </Link>
+                          <div key={index} onClick={closeSidebar}>
+                            <Link to={url}>
+                              {icon}
+                              {label}
+                            </Link>
+                          </div>
                         );
                       })}
                     </div>
@@ -81,10 +83,12 @@ const Sidebar = () => {
                       {links.map((link, index) => {
                         const { url, icon, label } = link;
                         return (
-                          <Link key={index} to={url}>
-                            {icon}
-                            {label}
-                          </Link>
+                          <div key={index} onClick={closeSidebar}>
+                            <Link to={url}>
+                              {icon}
+                              {label}
+                            </Link>
+                          </div>
                         );
                       })}
                     </div>

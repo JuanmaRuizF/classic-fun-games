@@ -5,7 +5,7 @@ const data = {
       about1:
         "Games are fun! That's what I thought when deciding to work on this project. This website is intended to present an implementation of several of the best classic games, while giving them a personal touch.",
       about2:
-        "There are many more games in mind that are planned to be implemented in the future. Some of them are the following:",
+        "There are many more games in mind that are planned to be implemented in the future, including other functionalities such as a register and log in option. Some of the games planned are the following:",
       futureGames: ["Hangman", "Tetris", "Higher/Lower", "Dino Runner"],
       about3:
         "Want another game to be implemented? Found any problems? Contact me:",
@@ -27,7 +27,7 @@ const data = {
       about1:
         "Los juegos son divertidos! Eso es lo que pensé cuando decidí empezar el proyecto. Esta página web tiene el objetivo de presentar una implementación de varios de los mejores juegos clásicos, al mismo tiempo que les doy un toque personal.",
       about2:
-        "Hay muchos otros juegos que están planeados para ser implementados en un futuro. Algunos de ellos son los siguientes:",
+        "Hay muchos otros juegos que están planeados para ser implementados en un futuro, además de otras funcionalidades como registro e inicio de sesión. Algunos de los juegos planeados son los siguientes:",
       futureGames: ["Ahorcado", "Tetris", "Higher/Lower", "Dino Runner"],
       about3:
         "¿Quieres ver otro juego implementado? ¿Te has encontrado con algún problema? Contacta conmigo:",
