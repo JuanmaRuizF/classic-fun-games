@@ -3,7 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./Styles/index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, BrowserRouter, Routes, Route } from "react-router-dom";
 import { AppProvider } from "./context";
 //info page imports
 import Error from "./Components/error_page";
@@ -19,19 +19,19 @@ import Sudoku from "./Components/Games/sudoku/sudoku";
 ReactDOM.render(
   <React.StrictMode>
     <AppProvider>
-      <BrowserRouter>
+      <HashRouter>
         <Routes>
           <Route path="/" element={<App />} />
-          <Route path="error" element={<Error />} />
-          <Route path="connect_four" element={<ConnectFour />} />
-          <Route path="memory_game" element={<MemoryGame />} />
-          <Route path="about" element={<About />} />
-          <Route path="contact" element={<Contact />} />
-          <Route path="sudoku" element={<Sudoku></Sudoku>} />
+          <Route path="/error" element={<Error />} />
+          <Route path="/connect_four" element={<ConnectFour />} />
+          <Route path="/memory_game" element={<MemoryGame />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/sudoku" element={<Sudoku></Sudoku>} />
 
           <Route path="*" element={<Error />} />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </AppProvider>
   </React.StrictMode>,
   document.getElementById("root")
