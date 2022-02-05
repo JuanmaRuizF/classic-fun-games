@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/classic-fun-games/static/css/main.726d842b.css",
-    "main.js": "/classic-fun-games/static/js/main.4c098cfe.js",
+    "main.js": "/classic-fun-games/static/js/main.a89e5f4a.js",
     "static/media/logo.png": "/classic-fun-games/static/media/logo.c82b83795c82ff774ad3.png",
     "index.html": "/classic-fun-games/index.html",
     "main.726d842b.css.map": "/classic-fun-games/static/css/main.726d842b.css.map",
-    "main.4c098cfe.js.map": "/classic-fun-games/static/js/main.4c098cfe.js.map"
+    "main.a89e5f4a.js.map": "/classic-fun-games/static/js/main.a89e5f4a.js.map"
   },
   "entrypoints": [
     "static/css/main.726d842b.css",
-    "static/js/main.4c098cfe.js"
+    "static/js/main.a89e5f4a.js"
   ]
 }
