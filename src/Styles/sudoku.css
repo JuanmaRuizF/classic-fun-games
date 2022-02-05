@@ -269,3 +269,26 @@
         height: 60vh;
     }
 }
+
+.msg_error {
+    font-size: 1.5em;
+    color: rgb(114, 9, 9);
+    font-style: italic;
+    align-items: center;
+}
+
+.msg_won {
+    font-size: 1.5em;
+    color: rgb(15, 161, 15);
+    font-style: italic;
+    align-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.msgContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
