@@ -2,7 +2,7 @@ import React from "react";
 import { useGlobalContext } from "../../../context";
 import "../../../Styles/sudoku.css";
 import { useState, useEffect } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 import BoardElement from "./board_element";
 import Buttons from "./button_numbers";
 import data from "./translation_data";
@@ -15,6 +15,11 @@ const Game_implementation = (props) => {
   const [selectedBox, setSelectedBox] = useState(null);
   const [selectedNumber, setSelectedNumber] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  const [showError, setShowError] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+  const [gameWon, setGameWon] = useState(false);
+  const [wonMsg, setWonMsg] = useState("");
 
   useEffect(() => {
     generate_sudoku();
@@ -53,6 +58,7 @@ const Game_implementation = (props) => {
   };
 
   const generate_sudoku = async () => {
+    setGameWon(false);
     let board;
     setSelectedNumber(null);
     setSelectedBox(null);
@@ -100,14 +106,121 @@ const Game_implementation = (props) => {
       .catch(console.warn);
   };
 
-  const validar = () => {
-    fetch("https://sugoku.herokuapp.com/validate", {
-      method: "POST",
-      body: encodeParams(unchangedBoard),
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    })
-      .then((response) => response.json())
-      .then((response) => console.log(response));
+  const display_msg_wrong = () => {
+    setShowError(true);
+    setTimeout(() => {
+      setShowError(false);
+    }, 15000);
+  };
+
+  const validate = () => {
+    let array_without_boolean = [];
+
+    for (let i = 0; i < initialBoard.length; i++) {
+      array_without_boolean.push(initialBoard[i][0]);
+    }
+    //check if all grid is filled
+    if (array_without_boolean.indexOf(0) > -1) {
+      language === "English"
+        ? setErrorMsg(
+            "The sudoku is not complete. Please fill in all the grid to validate it."
+          )
+        : setErrorMsg(
+            "El sudoku no está completado. Por favor, rellena todo el sudoku para poder validarlo."
+          );
+      display_msg_wrong();
+      return;
+    }
+
+    let array_to_2d = []; //preparing values to validate them horizontally, vertically and in groups
+    while (array_without_boolean.length)
+      array_to_2d.push(array_without_boolean.splice(0, 9));
+
+    //horizontal values validation
+    let unique_horizontal;
+
+    for (let i = 0; i < 9; i++) {
+      unique_horizontal = [...new Set(array_to_2d[i])];
+      if (unique_horizontal.length < 9) {
+        language === "English"
+          ? setErrorMsg("There is a duplicate value in row " + (i + 1))
+          : setErrorMsg("Hay un valor duplicado en la fila " + (i + 1));
+        display_msg_wrong();
+        return;
+      }
+    }
+
+    //vertical values validation
+    let unique_vertical;
+
+    for (let i = 0; i < 9; i++) {
+      unique_vertical = [
+        ...new Set([].concat(...[array_to_2d].map((x) => x.map((x) => x[i])))),
+      ];
+      if (unique_vertical.length < 9) {
+        language === "English"
+          ? setErrorMsg("There is a duplicate value in column " + (i + 1))
+          : setErrorMsg("Hay un valor duplicado en la columna " + (i + 1));
+        display_msg_wrong();
+        return;
+      }
+    }
+
+    //subgroup values validation
+    let unique_group;
+    let blocks = [];
+    let ret = [];
+
+    for (let h = 0; h < 3; h++) {
+      array_to_2d.forEach((row) => {
+        for (let i = 0; i < 3; i++) {
+          blocks.push(row.shift());
+        }
+      });
+    }
+    for (let j = 0; j < 9; j++) {
+      for (let k = 0; k < 9; k++) {
+        if (!Array.isArray(ret[j])) {
+          ret[j] = [];
+        }
+        ret[j].push(blocks.shift());
+      }
+    }
+
+    let conversion_groups = {
+      0: "(0,0)",
+      1: "(1,0)",
+      2: "(2,0)",
+      3: "(0,1)",
+      4: "(1,1)",
+      5: "(2,1)",
+      6: "(0,2)",
+      7: "(1,2)",
+      8: "(2,2)",
+    };
+    for (let i = 0; i < 9; i++) {
+      unique_group = [...new Set(ret[i])];
+      if (unique_group.length < 9) {
+        language === "English"
+          ? setErrorMsg(
+              "There is a duplicate value in subgroup " + conversion_groups[i]
+            )
+          : setErrorMsg(
+              "Hay un valor duplicado en el subgrupo " + conversion_groups[i]
+            );
+        display_msg_wrong();
+        return;
+      }
+    }
+
+    language === "English"
+      ? setWonMsg("The sudoku is valid, congratulations!")
+      : setWonMsg("El sudoku es válido, felicidades!");
+    setGameWon(true);
+  };
+
+  const handleClose = () => {
+    setGameWon(false);
   };
 
   return (
@@ -116,6 +229,30 @@ const Game_implementation = (props) => {
         <LoadingComponent></LoadingComponent>
       ) : (
         <>
+          <div className="msgContainer">
+            {showError ? (
+              <div className="msg_error">{errorMsg}</div>
+            ) : (
+              <div></div>
+            )}
+          </div>
+
+          <Modal show={gameWon} onHide={handleClose}>
+            <Modal.Header closeButton>
+              <Modal.Title>
+                {language === "English"
+                  ? "Game Finished!"
+                  : "Partida terminada"}
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>{wonMsg}</Modal.Body>
+            <Modal.Footer>
+              <Button variant="primary" onClick={generate_sudoku}>
+                {language === "English" ? "New Game" : "Nueva Partida"}
+              </Button>
+            </Modal.Footer>
+          </Modal>
+
           <div className="sudoku_grid">
             {initialBoard.map((element, i) => {
               return (
@@ -147,7 +284,7 @@ const Game_implementation = (props) => {
             <Button onClick={solve_function} className="button_options">
               {language === "English" ? "Solve" : "Resolver"}
             </Button>
-            <Button onClick={validar} className="button_options">
+            <Button onClick={validate} className="button_options">
               {language === "English" ? "Validate" : "Validar"}
             </Button>
 
