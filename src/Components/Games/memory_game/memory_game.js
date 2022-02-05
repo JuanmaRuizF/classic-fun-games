@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import GameImplementation from "./game_implementation";
 import data from "./translation_data";
-
+import Footer from "../../Footer_component/Footer";
 const Memory_game = () => {
   const { closeSubmenu, language, updateLanguage } = useGlobalContext();
 
@@ -133,6 +133,11 @@ const Memory_game = () => {
               </li>
             </ul>
           </div>
+          {language === "English" ? (
+            <Footer name={"Memory Game"}></Footer>
+          ) : (
+            <Footer name={"Juego de Memoria"}></Footer>
+          )}
         </div>
       </div>
     </>

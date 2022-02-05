@@ -7,7 +7,7 @@ import "../../../Styles/sudoku.css";
 import { useState, useEffect } from "react";
 import data from "./translation_data";
 import { Button } from "react-bootstrap";
-
+import Footer from "../../Footer_component/Footer";
 import GameImplementation from "./game_implementation";
 
 const Sudoku = () => {
@@ -101,6 +101,7 @@ const Sudoku = () => {
               </ul>
             )}
           </div>
+          <Footer name={"Sudoku"}></Footer>
         </div>
       </div>
     </>
@@ -108,13 +109,3 @@ const Sudoku = () => {
 };
 
 export default Sudoku;
-
-// board = [].concat(...response["board"]);
-// for (let i = 0; i < board.length; i++) {
-//   //[elemento, es valor inicial?]
-//   if (board[i] > 0) {
-//     board[i] = [board[i], true];
-//   } else {
-//     board[i] = [board[i], false];
-//   }
-// }

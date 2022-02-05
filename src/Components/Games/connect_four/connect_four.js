@@ -9,6 +9,7 @@ import Sidebar from "../../Navbar_components/Sidebar";
 import Submenu from "../../Navbar_components/Submenu";
 import { useGlobalContext } from "../../../context";
 import data from "./translation_data";
+import Footer from "../../Footer_component/Footer";
 
 const Connect_four = () => {
   let elements = useRef(create_grid_elements()); // para que no se ejecute siempre esto al renderizar de nuevo la pantalla
@@ -195,6 +196,11 @@ const Connect_four = () => {
               </ul>
             )}
           </div>
+          {language === "English" ? (
+            <Footer name={"Connect 4"}></Footer>
+          ) : (
+            <Footer name={"Conecta 4"}></Footer>
+          )}
         </div>
       </div>
     </>
