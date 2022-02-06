@@ -84,6 +84,7 @@ const Memory_game = () => {
               </tr>
             </tbody>
           </table>
+          <div className="space"></div>
         </div>
       </div>
     </>

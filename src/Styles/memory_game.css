@@ -1,137 +1,169 @@
-    @import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&display=swap');
-    .memory_game {
-        background-color: #090947;
-        background-image: linear-gradient(315deg, #090947 0%, #5a585a 74%);
-        min-height: 100vh;
-        padding-bottom: 5%;
-    }
-    
-    .title {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: xx-large;
-        font-family: 'Mochiy Pop P One', sans-serif;
-        color: white;
-        text-shadow: 2px 0 0 rgb(3, 2, 2), -2px 0 0 rgb(3, 2, 2), 0 2px 0 rgb(3, 2, 2), 0 -2px 0 rgb(3, 2, 2), 1px 1px rgb(3, 2, 2), -1px -1px 0 rgb(3, 2, 2), 1px -1px 0 rgb(3, 2, 2), -1px 1px 0 rgb(3, 2, 2);
-    }
-    
-    .settings {
-        color: rgb(172, 152, 152);
-        text-align: right;
-        padding-top: 2%;
-    }
-    
-    .turns {
-        font-size: x-large;
-        font-family: 'Mochiy Pop P One', sans-serif;
-        padding-top: 2%;
-        text-align: center;
-        color: white;
-    }
-    
-    .text_info ul {
-        list-style-type: disc;
-    }
-    
-    .title_container {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-gap: 20px;
-    }
-    
-    .card_grid_6 {
-        margin-top: 40px;
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        grid-gap: 20px;
-    }
-    
-    .card_grid_8 {
-        margin-top: 40px;
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        grid-gap: 15px;
-    }
-    
-    .card_grid_10 {
-        margin-top: 40px;
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-        grid-gap: 20px;
-    }
-    
-    .card {
-        position: relative;
-    }
-    
-    .card img {
-        width: 100%;
-        display: block;
-        border: 2px solid #fff;
-        border-radius: 6px;
-        background: inherit;
-    }
-    
-    .card img:hover {
-        border: 7px solid rgb(2, 129, 51);
-    }
-    
-    .card_back {
-        display: block;
-        max-width: 300px;
-        max-height: 300px;
-        width: auto;
-        height: auto;
-    }
-    
-    .text_info {
-        padding-top: 5%;
-    }
-    
-    .text_info_difficulty {
-        display: flex;
-        justify-content: center;
-        color: white;
-        padding-top: 2%;
-    }
-    
-    .loading_content {
-        display: flex;
-        justify-content: center;
-        color: white;
-        padding-top: 8%;
-    }
-    
-    .new_game_button {
-        display: flex;
-        justify-content: center;
-        padding-top: 2%;
-    }
-    
-    .card .front {
-        transform: rotateY(90deg);
-        transition: all ease in 0.3s;
-        position: absolute;
-    }
-    
-    .flipped .front {
-        transform: rotateY(0deg);
-        transition-delay: 0.3s;
-    }
-    
-    .card .back {
-        transition: all ease-in 0.3s;
-        transition-delay: 0.3s;
-    }
-    
-    .flipped .back {
-        transform: rotateY(90deg);
-        transition-delay: 0s;
-    }
-    
-    @media only screen and (max-width: 768px) {
-        .title {
-            padding-top: 20% !important;
+        @import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+        .memory_game {
+            background-color: #090947;
+            background-image: linear-gradient(315deg, #090947 0%, #5a585a 74%);
+            min-height: 100vh;
+            padding-bottom: 5%;
         }
-    }
+        
+        .title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: xx-large;
+            font-family: 'Mochiy Pop P One', sans-serif;
+            color: white;
+            text-shadow: 2px 0 0 rgb(3, 2, 2), -2px 0 0 rgb(3, 2, 2), 0 2px 0 rgb(3, 2, 2), 0 -2px 0 rgb(3, 2, 2), 1px 1px rgb(3, 2, 2), -1px -1px 0 rgb(3, 2, 2), 1px -1px 0 rgb(3, 2, 2), -1px 1px 0 rgb(3, 2, 2);
+        }
+        
+        .h3 {
+            font-family: 'Patrick Hand', cursive;
+        }
+        
+        .settings {
+            color: rgb(172, 152, 152);
+            text-align: right;
+            padding-top: 2%;
+        }
+        
+        .turns {
+            font-size: x-large;
+            font-family: 'Mochiy Pop P One', sans-serif;
+            padding-top: 2%;
+            text-align: center;
+            color: white;
+        }
+        
+        .text_info ul {
+            list-style-type: disc;
+        }
+        
+        .title_container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-gap: 20px;
+        }
+        
+        .card_grid_6 {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-gap: 20px;
+        }
+        
+        .card_grid_8 {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-gap: 15px;
+        }
+        
+        .card_grid_10 {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            grid-gap: 20px;
+        }
+        
+        @media only screen and (max-width: 768px) {
+            .card_grid_10 {
+                grid-gap: 5px;
+            }
+            .card_grid_8 {
+                grid-gap: 5px;
+            }
+            .card_grid_6 {
+                margin-top: 40px;
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+                grid-gap: 5px;
+            }
+        }
+        
+        .card {
+            position: relative;
+        }
+        
+        .card img {
+            width: 100%;
+            display: block;
+            border: 2px solid #fff;
+            border-radius: 6px;
+            background: inherit;
+        }
+        /* .card img:hover {
+        border: 7px solid rgb(2, 129, 51);
+    } */
+        
+        .card_back {
+            display: block;
+            max-width: 300px;
+            max-height: 300px;
+            width: auto;
+            height: auto;
+        }
+        
+        .text_info {
+            padding-top: 5%;
+        }
+        
+        .text_info_difficulty {
+            display: flex;
+            justify-content: center;
+            color: white;
+            padding-top: 2%;
+            font-family: 'Patrick Hand', cursive;
+        }
+        
+        .loading_content {
+            display: flex;
+            justify-content: center;
+            color: white;
+            padding-top: 8%;
+        }
+        
+        .new_game_button {
+            display: flex;
+            justify-content: center;
+            padding-top: 2%;
+        }
+        
+        .card .front {
+            transform: rotateY(90deg);
+            transition: all ease in 0.3s;
+            position: absolute;
+        }
+        
+        .flipped .front {
+            transform: rotateY(0deg);
+            transition-delay: 0.3s;
+        }
+        
+        .card .back {
+            transition: all ease-in 0.3s;
+            transition-delay: 0.3s;
+        }
+        
+        .flipped .back {
+            transform: rotateY(90deg);
+            transition-delay: 0s;
+        }
+        
+        @media only screen and (max-width: 768px) {
+            .title {
+                padding-top: 30% !important;
+            }
+        }
+        
+        @media only screen and (min-width: 375px) and (max-width:550px) {
+            .title {
+                padding-top: 20% !important;
+            }
+        }
+        
+        @media only screen and (max-width: 375px) {
+            .title {
+                padding-top: 33% !important;
+            }
+        }

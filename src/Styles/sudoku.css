@@ -96,12 +96,17 @@
 /* button new,solve,check */
 
 .button_options_grid {
-    width: 60%;
+    /* width: 60%; */
     margin: auto;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     background-color: inherit;
     padding-top: 4%;
+    padding-bottom: 10%;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .button_options {
@@ -113,13 +118,16 @@
     margin-left: 10%;
     margin-right: 10%;
     border-radius: 8%;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 
 /* button numbers css */
 
 .button_numbers_grid {
-    width: 80%;
     margin: auto;
     display: grid;
     grid-template-columns: repeat(10, 1fr);
@@ -136,8 +144,8 @@
     background-color: rgba(255, 255, 255, 0.8);
     border: 2px solid rgba(0, 0, 0, 0.8);
     border-radius: 50%;
-    height: 70px;
-    width: 70px;
+    height: 65px;
+    width: 65px;
     margin-top: 2%;
     background-color: white;
 }
@@ -150,8 +158,8 @@
     font-size: 3em;
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 50%;
-    height: 70px;
-    width: 70px;
+    height: 65px;
+    width: 65px;
     margin-top: 2%;
     background-color: white;
     border: 5px solid red;
@@ -194,11 +202,6 @@
     padding-bottom: 5%;
 }
 
-.restart_button {
-    width: 20%;
-    font-family: 'Mochiy Pop P One', sans-serif;
-}
-
 .center_div {
     padding-top: 3%;
     display: flex;
@@ -208,15 +211,14 @@
 }
 
 .title {
-    display: flex;
+    /* display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; */
     font-size: xx-large;
     font-family: 'Mochiy Pop P One', sans-serif;
-    padding-top: 10%;
     color: white;
     text-shadow: 2px 0 0 rgb(3, 2, 2), -2px 0 0 rgb(3, 2, 2), 0 2px 0 rgb(3, 2, 2), 0 -2px 0 rgb(3, 2, 2), 1px 1px rgb(3, 2, 2), -1px -1px 0 rgb(3, 2, 2), 1px -1px 0 rgb(3, 2, 2), -1px 1px 0 rgb(3, 2, 2);
-    padding-bottom: 5%;
+    padding-bottom: 10%;
 }
 
 .text_info ul {
@@ -229,7 +231,6 @@
 }
 
 @media only screen and (max-width: 768px) {
-    .sudoku_grid {}
     .non_initial_item {
         font-size: 1em;
     }

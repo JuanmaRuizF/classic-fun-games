@@ -1,69 +1,78 @@
-@import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&display=swap');
-.about {
-    background-color: #090947;
-    background-image: linear-gradient(315deg, #090947 0%, #5a585a 74%);
-    height: 100vh;
-}
-
-.title {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: xx-large;
-    font-family: 'Mochiy Pop P One', sans-serif;
-    padding-top: 10%;
-    color: white;
-}
-
-.msg_sent {
-    font-size: 1.5em;
-    color: rgb(114, 9, 9);
-    font-style: italic;
-}
-
-.form_data {
-    color: white;
-    font-size: 1.5em;
-}
-
-.contect_info {
-    color: white;
-    font-size: 1.2em;
-    padding-top: 5%;
-    padding-bottom: 3%;
-}
-
-.about_info {
-    color: white;
-    font-size: 1.1em;
-    padding-top: 5%;
-}
-
-.paragraph_info {
-    color: white;
-    font-size: 1.1em;
-    padding-top: 1%;
-}
-
-.paragraph_info ul {
-    list-style-type: disc;
-}
-
-.table_icons {
-    margin-left: auto;
-    margin-right: auto;
-}
-
-th,
-td {
-    padding-top: 10%;
-    padding-right: 20px;
-}
-
-a.otherButton {
-    color: #ffffff;
-}
-
-a.otherButton:visited {
-    color: #ffffff;
-}
+    @import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&display=swap');
+    .about {
+        background-color: #090947;
+        background-image: linear-gradient(315deg, #090947 0%, #5a585a 74%);
+        min-height: 100vh;
+    }
+    
+    .title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: xx-large;
+        font-family: 'Mochiy Pop P One', sans-serif;
+        padding-top: 10%;
+        color: white;
+    }
+    
+    .msg_sent {
+        font-size: 1.5em;
+        color: rgb(114, 9, 9);
+        font-style: italic;
+    }
+    
+    .form_data {
+        color: white;
+        font-size: 1.5em;
+    }
+    
+    .contect_info {
+        color: white;
+        font-size: 1.2em;
+        padding-top: 5%;
+        padding-bottom: 3%;
+        font-family: 'Patrick Hand', cursive;
+    }
+    
+    .about_info {
+        color: white;
+        font-size: 1.3em;
+        padding-top: 5%;
+        font-family: 'Patrick Hand', cursive;
+        /* font-family: 'Handlee', cursive; */
+    }
+    
+    .paragraph_info {
+        color: white;
+        font-size: 1.3em;
+        padding-top: 1%;
+        font-family: 'Patrick Hand', cursive;
+    }
+    
+    .paragraph_info ul {
+        list-style-type: disc;
+    }
+    
+    .table_icons {
+        margin-left: auto;
+        margin-right: auto;
+        /* padding-bottom: 5%; */
+    }
+    
+    th,
+    td {
+        padding-top: 10%;
+        padding-right: 20px;
+    }
+    
+    a.otherButton {
+        color: #ffffff;
+    }
+    
+    a.otherButton:visited {
+        color: #ffffff;
+    }
+    
+    .space {
+        padding-top: 10%;
+    }

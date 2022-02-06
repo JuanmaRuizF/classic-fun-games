@@ -15,12 +15,11 @@ function App() {
       <Submenu />
 
       <div className="content" onMouseOver={closeSubmenu}>
-        <h1>Classic fun games</h1>
-        <p>Best games</p>
+        <h3 className="main-title">Classic fun games</h3>
       </div>
-      <p className="content">
+      {/* <p className="content">
         <Link to="/error">Error page</Link>
-      </p>
+      </p> */}
     </div>
   );
 }

@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
 .grid-container {
     display: grid;
     grid-template-columns: auto auto auto auto auto auto auto;
@@ -14,7 +15,9 @@
 }
 
 .text_info {
-    color: white
+    color: white;
+    font-family: 'Patrick Hand', cursive;
+    font-size: 1.3em;
 }
 
 .grid-item {
@@ -97,7 +100,7 @@
 }
 
 .restart_button {
-    width: 20%;
+    /* width: 20%; */
     font-family: 'Mochiy Pop P One', sans-serif;
 }
 

@@ -42,27 +42,16 @@ const Footer = (props) => {
       <div className="footer_grid">
         {arrayData !== null ? (
           <>
-            {arrayData.map((element) => {
+            {arrayData.map((element, i) => {
               return (
-                <Card
-                  style={{ width: "30rem", height: "20rem" }}
-                  className="card_footer"
-                >
-                  <Link to={element.url}>
-                    <Card.Img variant="top" src={element.imgName} />
-                  </Link>
-                  <Card.Title>{element.name}</Card.Title>
-                  {/* <Card.Body>
-                    <Card.Title>{element.name}</Card.Title>
-                    <Card.Text>
-                      Some quick example text to build on the card title and
-                      make up the bulk of the card's content.
-                    </Card.Text>
+                <div className="card-container">
+                  <Card className="card_footer" key={i}>
                     <Link to={element.url}>
-                      <Button variant="primary">Try it</Button>
+                      <Card.Img variant="top" src={element.imgName} />
                     </Link>
-                  </Card.Body> */}
-                </Card>
+                    <Card.Title>{element.name}</Card.Title>
+                  </Card>
+                </div>
               );
             })}
           </>

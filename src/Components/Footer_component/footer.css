@@ -13,18 +13,9 @@
     .text_info_footer {
         color: white;
         padding-bottom: 2%;
-        font-size: 1.5em;
+        font-size: 1.6em;
+        font-family: 'Patrick Hand', cursive;
     }
-    /* .card_footer {
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: auto;
-    background-color: inherit;
-} */
     
     .card_footer {
         margin: 0;
@@ -36,15 +27,36 @@
         margin: auto;
         background-color: inherit;
         border: 0px;
+        /* width: "30rem";
+        height: "20rem;" */
+    }
+    
+    .card-container {
+        width: 80%;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+    }
+    
+    .card_footer {
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+        background-color: inherit;
         color: white;
+        width: auto;
     }
     
     .card-img-top {
-        width: 100%;
+        width: 70%;
         background-color: inherit;
     }
     
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 900px) {
         .footer_grid {
             grid-template-columns: repeat(1, 1fr);
         }
