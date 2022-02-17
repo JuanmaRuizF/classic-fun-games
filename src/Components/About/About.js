@@ -65,7 +65,7 @@ const Memory_game = () => {
                 </th>
                 <th>
                   <a
-                    href="https://www.linkedin.com/in/juan-manuel-ruiz-fr%C3%A1nquiz-b227a2218/"
+                    href="https://www.linkedin.com/in/juanmaruizf/"
                     className="otherButton"
                     target="blank"
                   >

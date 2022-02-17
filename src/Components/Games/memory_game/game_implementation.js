@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import SingleCard from "./single_card";
 import LoadingComponent from "./loading";
 import { Modal, Button } from "react-bootstrap";
-import { IoMdSettings } from "react-icons/io";
+import { RiArrowGoBackLine } from "react-icons/ri";
 import { useGlobalContext } from "../../../context";
 
 const Memory_game = (props) => {
@@ -134,13 +134,13 @@ const Memory_game = (props) => {
               {language === "English" ? "Turn:" : "Turno:"} {turns}
             </div>
             <div className="settings">
-              <IoMdSettings
+              <RiArrowGoBackLine
                 size="2em"
                 onClick={() => {
                   props.setPairs(null);
                   props.setDisplayGame(false);
                 }}
-              ></IoMdSettings>
+              ></RiArrowGoBackLine>
             </div>
           </div>
 
