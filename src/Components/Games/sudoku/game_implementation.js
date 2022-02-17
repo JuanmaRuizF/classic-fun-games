@@ -15,11 +15,42 @@ const Game_implementation = (props) => {
   const [selectedBox, setSelectedBox] = useState(null);
   const [selectedNumber, setSelectedNumber] = useState(null);
   const [loading, setLoading] = useState(true);
+  // const [seconds, setSeconds] = useState(0);
+  // const [restartGame, setRestartGame] = useState(false);
 
   const [showError, setShowError] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [gameWon, setGameWon] = useState(false);
   const [wonMsg, setWonMsg] = useState("");
+
+  const [seconds, setSeconds] = useState(0);
+  const [isActive, setIsActive] = useState(true);
+  const [convertedTime, setConvertedTime] = useState(
+    new Date(seconds).toISOString().substr(11, 8)
+  );
+
+  function pauseTimer() {
+    setIsActive(!isActive);
+  }
+
+  function reset() {
+    setSeconds(0);
+    setConvertedTime(new Date(seconds).toISOString().substr(11, 8));
+    setIsActive(true);
+  }
+
+  useEffect(() => {
+    let interval = null;
+    if (isActive) {
+      interval = setInterval(() => {
+        setSeconds(seconds + 1000);
+        setConvertedTime(new Date(seconds).toISOString().substr(11, 8));
+      }, 1000);
+    } else if (!isActive) {
+      clearInterval(interval);
+    }
+    return () => clearInterval(interval);
+  }, [isActive, seconds]);
 
   useEffect(() => {
     generate_sudoku();
@@ -214,9 +245,16 @@ const Game_implementation = (props) => {
     }
 
     language === "English"
-      ? setWonMsg("The sudoku is valid, congratulations!")
-      : setWonMsg("El sudoku es válido, felicidades!");
+      ? setWonMsg(
+          "The sudoku is valid, congratulations! Game duration: " +
+            convertedTime
+        )
+      : setWonMsg(
+          "El sudoku es válido, felicidades! Duración de la partida: " +
+            convertedTime
+        );
     setGameWon(true);
+    pauseTimer();
   };
 
   const handleClose = () => {
@@ -247,12 +285,24 @@ const Game_implementation = (props) => {
             </Modal.Header>
             <Modal.Body>{wonMsg}</Modal.Body>
             <Modal.Footer>
-              <Button variant="primary" onClick={generate_sudoku}>
+              <Button
+                variant="primary"
+                onClick={() => {
+                  reset();
+                  generate_sudoku();
+                }}
+              >
                 {language === "English" ? "New Game" : "Nueva Partida"}
               </Button>
             </Modal.Footer>
           </Modal>
-
+          {/* <div className="timer">{convertedTime}</div> */}
+          <div className="timer">
+            {language === "English"
+              ? "Game duration: "
+              : "Duración de la partida: "}
+            {convertedTime}
+          </div>
           <div className="sudoku_grid">
             {initialBoard.map((element, i) => {
               return (
@@ -274,7 +324,9 @@ const Game_implementation = (props) => {
           <div className="button_options_grid">
             <Button
               onClick={() => {
+                reset();
                 setLoading(true);
+
                 generate_sudoku();
               }}
               className="button_options"
